@@ -1,0 +1,61 @@
+<h2>Contactos</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Teléfono</th>      
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--
+      *ngFor="let c of contacts":
+      - Itera sobre el array `contacts`.
+      - Por cada elemento crea una fila <tr> y asigna el objeto actual a la variable `c`.
+    -->
+    <tr *ngFor="let c of contacts">
+
+      <!--
+        *ngIf="editId !== c.id; else editTpl":
+        - Si editId NO coincide con c.id, muestra la "vista normal" dentro de este ng-container.
+        - Si coincide, salta al bloque <ng-template #editTpl>.
+        - ng-container no añade elementos extra al DOM; solo agrupa lógica.
+      -->
+      <ng-container *ngIf="editId !== c.id; else editTpl">
+        <td>{{ c.name }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.phone }}</td>           
+        <td>
+          <button (click)="startEdit(c)">Editar</button>
+          <button (click)="delete(c)" [disabled]="loading">
+            {{ loading ? 'Cargando…' : 'Borrar' }}
+          </button>
+        </td>
+      </ng-container>
+
+      <!--
+        <ng-template #editTpl>:
+        Plantilla de edición inline, renderizada cuando editId === c.id.
+      -->
+      <ng-template #editTpl>
+        <!--
+          [(ngModel)] vincula cada <input> bidireccionalmente con la propiedad del componente:
+          1) Inicializa el input con el valor actual (this.name, this.email, this.phone).
+          2) Cada cambio del usuario se refleja instantáneamente en esas propiedades.
+        -->
+        <td><input [(ngModel)]="name" /></td>
+        <td><input [(ngModel)]="email" /></td>
+        <td><input [(ngModel)]="phone" /></td>  
+        <td>
+          <button (click)="save(c)">Guardar</button>
+          <button (click)="cancel()">Cancelar</button>
+        </td>
+      </ng-template>
+
+    </tr>
+  </tbody>
+</table>
+
+

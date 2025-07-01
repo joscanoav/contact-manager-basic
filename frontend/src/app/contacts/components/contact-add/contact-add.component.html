@@ -1,0 +1,118 @@
+<!-- Título del formulario -->
+<h2>Nuevo Contacto</h2>
+
+<!--  
+  1) Formulario Angular:
+     - (ngSubmit)="save()"  
+       Al enviar el formulario (submit), Angular llama al método `save()` definido en el componente.
+-->
+<form (ngSubmit)="save()">
+
+  <!--  
+    2) Campo Nombre:
+       - [(ngModel)]="name"  
+         Bindeo bidireccional: mantiene sincronizada la propiedad `name` del componente con este <input>.  
+       - name="name"  
+         Nombre interno del control en el formulario (requerido para ngModel).  
+       - required  
+         HTML5: campo obligatorio.
+  -->
+  <label>
+    Nombre:<br />
+    <input
+      [(ngModel)]="name"
+      name="name"
+      required
+    />
+  </label>
+
+  <br /><br />
+
+  <!--  
+    3) Campo Email:
+       - [(ngModel)]="email"  
+         Bindeo bidireccional con la propiedad `email`.  
+       - name="email"  
+         Identificador del control.  
+       - required  
+         Campo obligatorio.  
+       - type="email"  
+         HTML5: usa validación nativa de formato de correo.  
+       - pattern="…"
+         Patrón regex adicional para reforzar la validación.
+  -->
+  <label>
+    Email:<br />
+    <input
+      [(ngModel)]="email"
+      name="email"
+      required
+      type="email"
+      pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"
+    />
+  </label>
+
+  <br /><br />
+
+  <!--  
+    4) Campo Teléfono:
+       - [(ngModel)]="phone"  
+         Bindeo bidireccional con `phone`.  
+       - name="phone"  
+         Nombre del control.  
+       - (no es required): opcional.
+  -->
+  <label>
+    Teléfono:<br />
+    <input
+      [(ngModel)]="phone"
+      name="phone"
+    />
+  </label>
+
+  <br /><br />
+
+  <!--  
+    5) Botón de envío:
+       - type="submit"  
+         Dispara el evento submit del <form> (y con ello ngSubmit).
+  -->
+  <button type="submit">
+    Crear
+  </button>
+</form>
+
+<!--  
+   6) Versión alternativa comentada:
+      En lugar de usar pattern en el <input> de email, se elimina el type y pattern, y se añade:
+      - (click)="validateEmail($event)"  
+        Al pulsar el botón, llama al método `validateEmail`, pasando el evento para procesarlo.
+      Esta aproximación permite validación manual tras el clic, pero
+      pierde la validación HTML5 inmediata y el ngSubmit sin control adicional.
+-->
+<!--
+<h2>Nuevo Contacto</h2>
+<form (ngSubmit)="save()">
+  <label>
+    Nombre:<br />
+    <input [(ngModel)]="name" name="name" required />
+  </label>
+  <br /><br />
+  <label>
+    Email:<br />
+    <input [(ngModel)]="email" name="email" required />
+  </label>
+  <br /><br />
+  <label>
+    Teléfono:<br />
+    <input [(ngModel)]="phone" name="phone" />
+  </label>
+  <br /><br />
+  <button
+    type="submit"
+    (click)="validateEmail($event)"
+  >
+    Crear
+  </button>
+</form>
+-->

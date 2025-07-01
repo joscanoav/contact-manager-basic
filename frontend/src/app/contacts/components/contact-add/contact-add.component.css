@@ -1,0 +1,35 @@
+label {
+  display: block;
+  margin-bottom: 12px;
+}
+input {
+  width: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+}
+button {
+  padding: 6px 12px;
+}
+
+
+/*  
+  1) Selector compuesto: 
+     input.ng-invalid.ng-touched 
+     - input: selecciona todos los elementos <input> del formulario. 
+     - .ng-invalid: solo aquellos que Angular marca como “inválidos” tras las validaciones. 
+     - .ng-touched: solo los campos que el usuario ya ha interactuado (ha entrado y salido de ellos).
+*/
+input.ng-invalid.ng-touched {
+  /*  
+    2) Propiedad border (borde): 
+       - 1px   : grosor de 1 píxel. 
+       - solid : estilo de línea continua. 
+       - red   : color rojo, para llamar la atención sobre el error.
+  */
+  border: 1px solid red;
+}
+
+
+
+
+

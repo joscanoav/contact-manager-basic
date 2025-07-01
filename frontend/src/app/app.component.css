@@ -1,0 +1,12 @@
+nav {
+  padding: 1em;
+  background: #f7f7f7;
+}
+a {
+  margin-right: 1em;
+  text-decoration: none;
+  color: #007acc;
+}
+a:hover {
+  text-decoration: underline;
+}
