@@ -12,6 +12,9 @@ db.json
 # Logs de npm/yarn
 npm-debug.log*
 yarn-error.log*
+#Ajustes locales de VS Code
+.vscode/
+
 
 #node_modules/: elimina todas las dependencias instaladas.
 #dist/, out-tsc/, .angular/: carpetas de build y cache de Angular CLI.
